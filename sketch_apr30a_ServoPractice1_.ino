@@ -1,19 +1,58 @@
+#include <LiquidCrystal.h>
 #include <Servo.h>
-/* Test run for arduino motor */
-Servo myservo; // Servo object to control a servo
-int pos = 0; // store servo original position
+
+LiquidCrystal lcd(4, 11, 13, 9, 8, 6);
+
+int potPin1 = A1;
+int potPin2 = A2;
+
+int ledPin = 7;
+int counter = 0;
+
+Servo myServo;
+Servo myServo2;
+Servo myServo3;
+
+int buttonState = 0;
+int buttonPin = 2;
+int led = 13;
 
 void setup() {
-  myservo.attach(10);  // attaches the servo on pin 10 to servo object
+ Serial.begin(9600);
+ myServo.attach(10);
+ myServo2.attach(5);
+ myServo3.attach(4);
+ 
+ pinMode(ledPin, OUTPUT);
+ pinMode(buttonPin, INPUT);
+
+ lcd.begin(16, 2);
+ lcd.clear();
+
+ pinMode(potPin1, INPUT);
+ pinMode(potPin2, INPUT);
 }
 
 void loop() {
- for (pos = 0; pos <= 180; pos += 1) {  // goes from 0 degrees to 180 degrees
-  myservo.write(pos); //ell servo to go to position in variable 'pos'
-  delay(15);// wait 15ms for servo reach position
- }
- for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
-  myservo.write(pos);// tell servo to go to position in variable 'pos'
-  delay(15);
- }
+  
+ buttonState = digitalRead(buttonPin);
+ Serial.println(buttonState);
+ 
+if(buttonState == HIGH) {
+digitalWrite(led, HIGH);
+digitalWrite(ledPin, HIGH);
+  myServo.write(170);
+  myServo2.write(170);
+  myServo3.write(170);
+  delay(1000);
+
+  
+ digitalWrite(led, LOW);
+ digitalWrite(ledPin, LOW);
+  myServo.write(90);
+  myServo2.write(90);
+  myServo3.write(90);
+  lcd.print("Testing 2");
+  delay(1000);
+ }  
 }
