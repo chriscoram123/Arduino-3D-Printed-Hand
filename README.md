@@ -1,6 +1,6 @@
 # Arduino 3D Printed Hand
 ![IMG_0017](https://user-images.githubusercontent.com/36040531/60638227-883bb300-9deb-11e9-925a-15e064ff2733.jpeg)
-* Above image is prototype one *
+*Above image is prototype one*
 
 # About Project
 * Improve response time and efficency for bionic prosthetic models
